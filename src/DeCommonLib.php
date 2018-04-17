@@ -7,10 +7,10 @@ use dekuan\delib\CLib;
 
 
 /***
- *	Class CommonLib
+ *	Class DeCommonLib
  *	@package App\Http\Lib
  */
-class CommonLib
+class DeCommonLib
 {
 	/**
 	 *	@param	int	$nAvailableSeconds

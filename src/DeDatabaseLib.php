@@ -5,11 +5,12 @@ namespace dekuan\delavlib;
 use dekuan\delib\CLib;
 
 
+
 /**
- *	Class DatabaseLib
+ *	Class DeDatabaseLib
  *	@package dekuan\delavlib
  */
-class DatabaseLib
+class DeDatabaseLib
 {
 	/**
 	 *	@param	int	$nMId

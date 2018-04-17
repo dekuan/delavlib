@@ -13,10 +13,10 @@ use dekuan\delib\CMobileDetector;
 
 
 /**
- *	Class NetworkLib
+ *	Class DeNetworkLib
  *	@package App\Http\Lib
  */
-class NetworkLib
+class DeNetworkLib
 {
 	/**
 	 *	check if current browser is WeChat Browser

@@ -7,10 +7,10 @@ use dekuan\delib\CLib;
 
 
 /**
- *	Class CacheLib
+ *	Class DeCacheLib
  *	@package App\Http\Lib
  */
-class CacheLib
+class DeCacheLib
 {
 	/***
 	 *	@param	string	$sNamespace
