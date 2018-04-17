@@ -8,10 +8,10 @@ use dekuan\vdata\CRemote;
 
 
 /**
- *	Class ParameterLib
+ *	Class DeParameterLib
  *	@package App\Http\Lib
  */
-class ParameterLib
+class DeParameterLib
 {
 	/**
 	 *	default values

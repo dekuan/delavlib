@@ -6,10 +6,10 @@ use dekuan\delib\CLib;
 
 
 /**
- *	Class SignLib
+ *	Class DeSignLib
  *	@package App\Http\Lib
  */
-class SignLib
+class DeSignLib
 {
 	/**
 	 *	@param	array	$arrData
