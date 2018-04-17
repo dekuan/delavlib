@@ -1,0 +1,40 @@
+{
+	"name"		: "dekuan/delavlib",
+	"description"	: "Library for Laravel framework by DeKuan, Inc.",
+	"type"		: "library",
+	"license"	: "proprietary",
+	"authors" :
+	[
+		{
+			"name" : "liuqixing",
+			"email" : "liuqixing@dekuan.org"
+		}
+	],
+	"extra":
+	{
+		"branch-alias":
+		{
+			"dev-master" : "0.3.x-dev"
+		}
+	},
+	"require":
+	{
+		"php" : ">=5.3.0",
+		"dekuan/vdata" : ">=1.0",
+		"dekuan/delib" : ">=1.0",
+		"dekuan/deuclientpro" : ">=1.0",
+		"dekuan/dedid" : ">=1.0"
+	},
+	"require-dev" :
+	{
+		"phpunit/phpunit" : "~4.0"
+	},
+	"autoload":
+	{
+		"psr-4" : { "dekuan\\" : "src" }
+	},
+	"autoload-dev" :
+	{
+		"psr-4" : { "dekuan\\" : "src" }
+	}
+}
