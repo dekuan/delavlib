@@ -72,6 +72,14 @@ class DeNetworkLib
 		return $nRet;
 	}
 
+	/**
+	 *	get safe HTTP HOST
+	 *	@return	string
+	 */
+	static function getSafeHostName()
+	{
+		return CLib::GetValEx( $_SERVER, 'HTTP_HOST', CLib::VARTYPE_STRING, '' );
+	}
 
 	/**
 	 *	get safe HTTP scheme
