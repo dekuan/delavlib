@@ -10,10 +10,11 @@
          stopOnFailure="false"
          syntaxCheck="false">
     <testsuites>
-        <testsuite name="DeLib Test Suite">
-            <directory>./tests/</directory>
+        <testsuite name="DeDateTimeLib">
+            <directory suffix="Test.php">./tests/</directory>
         </testsuite>
     </testsuites>
+
     <filter>
         <whitelist>
             <directory>./src</directory>
