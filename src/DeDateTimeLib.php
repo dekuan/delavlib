@@ -124,40 +124,48 @@ class DeDateTimeLib
 		if ( is_numeric( $nTimestamp ) && $nTimestamp > 0 )
 		{
 			//	YYYY-mm-dd HH:ii:ss by user specified
-			return date( "Y-m-d H:i:s", $nTimestamp );
+			return date( "Y-m-d", $nTimestamp );
 		}
 		else
 		{
 			//	YYYY-mm-dd HH:ii:ss by current OS
-			return date( "Y-m-d H:i:s" );
+			return date( "Y-m-d" );
 		}
 	}
-
-	static function getTimeWithNowTime( $nTimestamp = null )
-	{
-		return strtotime( self::getISODateTimeString( $nTimestamp ) );
-	}
+	
 	static function getISODateTimeString( $nTimestamp = null )
 	{
 		if ( is_numeric( $nTimestamp ) && $nTimestamp > 0 )
 		{
-			$nTimeNew = mktime
-			(
-				date( "H" ),
-				date( "i" ),
-				date( "s" ),
-				date( "n", $nTimestamp ),
-				date( "j", $nTimestamp ),
-				date( "Y", $nTimestamp )
-			);
-			return date( "Y-m-d H:i:s", $nTimeNew );
+//			$nTimeNew = mktime
+//			(
+//				date( "H", $nTimestamp ),
+//				date( "i", $nTimestamp ),
+//				date( "s", $nTimestamp ),
+//				date( "n", $nTimestamp ),
+//				date( "j", $nTimestamp ),
+//				date( "Y", $nTimestamp )
+//			);
+			return date( "Y-m-d H:i:s", intval( $nTimestamp ) );
 		}
 		else
 		{
 			return date( "Y-m-d H:i:s" );
 		}
 	}
-
+	
+	static function getTimeWithNowTime( $nTimestamp = null )
+	{
+		$sDateTime	= self::getISODateTimeString( $nTimestamp );
+		return strtotime( $sDateTime );
+	}
+	
+	
+	/**
+	 *	is today by date
+	 *	@param	string	$sDate
+	 *	@return bool
+	 */
 	static function isToday( $sDate )
 	{
 		if ( ! self::isValidISODateString( $sDate ) &&
@@ -169,27 +177,51 @@ class DeDateTimeLib
 		$sCheckDate = date( "Y-m-d", strtotime( $sDate ) );
 		return ( 0 == strcasecmp( $sCheckDate, date( "Y-m-d" ) ) );
 	}
+	
+	/**
+	 *	is future datetime
+	 *	@param	string	$sDate
+	 *	@return bool
+	 */
 	static function isFuture( $sDate )
 	{
-		if ( ! self::isValidISODateString( $sDate ) &&
-			! self::isValidISODateTimeString( $sDate ) )
+		$bRet	= false;
+
+		if ( self::isValidISODateTimeString( $sDate ) )
 		{
-			return false;
+			$sCheckDate = date( "Y-m-d H:i:s", strtotime( $sDate ) );
+			$bRet = ( self::getISODateTimeDiff( date( "Y-m-d H:i:s" ), $sCheckDate ) > 0 );
+		}
+		else if ( self::isValidISODateString( $sDate ) )
+		{
+			$sCheckDate = date( "Y-m-d", strtotime( $sDate ) );
+			$bRet = ( self::getISODateTimeDiff( date( "Y-m-d" ), $sCheckDate ) > 0 );
 		}
 
-		$sCheckDate = date( "Y-m-d", strtotime( $sDate ) );
-		return ( DateTimeLib::getISODatesDiff( date( "Y-m-d" ), $sCheckDate ) > 0 );
+		return $bRet;
 	}
+	
+	/**
+	 *	is past datetime
+	 *	@param	string	$sDate
+	 *	@return bool
+	 */
 	static function isPast( $sDate )
 	{
-		if ( ! self::isValidISODateString( $sDate ) &&
-			! self::isValidISODateTimeString( $sDate ) )
+		$bRet	= false;
+
+		if ( self::isValidISODateTimeString( $sDate ) )
 		{
-			return false;
+			$sCheckDate = date( "Y-m-d H:i:s", strtotime( $sDate ) );
+			$bRet = ( self::getISODateTimeDiff( date( "Y-m-d H:i:s" ), $sCheckDate ) < 0 );
+		}
+		else if ( self::isValidISODateString( $sDate ) )
+		{
+			$sCheckDate = date( "Y-m-d", strtotime( $sDate ) );
+			$bRet = ( self::getISODateTimeDiff( date( "Y-m-d" ), $sCheckDate ) < 0 );
 		}
 
-		$sCheckDate = date( "Y-m-d", strtotime( $sDate ) );
-		return ( DateTimeLib::getISODatesDiff( date( "Y-m-d" ), $sCheckDate ) < 0 );
+		return $bRet;
 	}
 
 
@@ -221,7 +253,7 @@ class DeDateTimeLib
 		return ( false !== $nTime &&
 			0 == strcasecmp( $sDateTime, date( "Y-m-d H:i:s", $nTime ) ) );
 	}
-	static function getISODatesDiff( $sDate1, $sDate2 )
+	static function getISODateTimeDiff( $sDate1, $sDate2 )
 	{
 		//
 		//	sDate1	- yyyy-mm-dd or yyyy-mm-dd hh:ii:ss
