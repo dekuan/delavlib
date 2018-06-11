@@ -23,7 +23,7 @@ class DeCommonLib
 			return '';
 		}
 
-		$sSource	= strval( time() / intval( $nAvailableSeconds ) );
+		$sSource	= strval( intval( time() / intval( $nAvailableSeconds ) ) );
 		$nCrc32		= crc32( $sSource );
 		$sResult	= strval( abs( $nCrc32 ) ); 
 		return substr( $sResult, 0, 4 );
